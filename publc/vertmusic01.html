@@ -1,3 +1,44 @@
+    <canvas id="myCanvas" width="1000" height="400" style="border:1px solid black;"></canvas><br>
+    <input type="button" value="Start Moving" onclick="moveDot()">
+       
+
+<script>
+        // Define your variables with "my" prefix
+        let myCanvas = document.getElementById("myCanvas");
+        let ctx = myCanvas.getContext("2d");
+        let dotX = 200;
+
+        async function moveDot() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+            // Draw the horizontal line
+            ctx.beginPath();
+            ctx.moveTo(0, myCanvas.height / 2);
+            ctx.lineTo(myCanvas.width, myCanvas.height / 2);
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+            ctx.closePath();
+
+
+            // Draw the dot at the new position
+            ctx.beginPath();
+            ctx.arc(dotX, myCanvas.height / 2, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.closePath();
+
+            // Move the dot to the left using async/await
+            await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
+            dotX -= 2;
+
+            // Repeat the animation
+            if (dotX > 0) {
+                requestAnimationFrame(moveDot);
+            }
+        }
+    </script>
+
 
 <h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
 
@@ -15,9 +56,7 @@
 
 <input type=button value="play Flip horizontal-rotate to vertical" onclick="{
 
-alert('hi')
+  alert('hi')
  
 }">
 
-
- 

@@ -4,19 +4,20 @@
 
 <textarea id="myArea01" rows=6 cols=70 NOWRAP>
  *_ '2__ *_ '4___ *_ '2___ '4__ *______---------- 7__ *__ '0__ *_ 9__ 7___ 9__ 4__ *_ *______
-</textarea>
+</textarea><br>
 
 <input type=button value="play Normal" onclick="{
-alert(document.getElementById(myArea01).value)
+  let mySong = document.getElementById('myArea01').value.split(' ')
+  alert(mySong)
  
 }">
+
+
 <input type=button value="play Flip horizontal-rotate to vertical" onclick="{
 
 alert('hi')
  
 }">
-
-
 
 
  

@@ -12,6 +12,8 @@
         let myCanvas = document.getElementById("myCanvas");
         let ctx = myCanvas.getContext("2d");
         let dotX = 200;
+        let myChangeX = 50
+        let mySong;
 
         async function moveDot() {
             // Clear the canvas
@@ -34,7 +36,7 @@
 
             
             ctx.beginPath();
-            ctx.arc(dotX+60, myCanvas.height / 2, 5, 0, Math.PI * 2);
+            ctx.arc(dotX+myChangeX, myCanvas.height / 2, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
@@ -61,8 +63,8 @@
 <input type="button" value="Start Moving" onclick="moveDot()">
 
 <input type="button" value="play Normal" onclick="{
-    let mySong = document.getElementById('myArea01').value.split(' ')
-    alert(mySong)
+    mySong = document.getElementById('myArea01').value.split(' ')
+   // alert(mySong)
 }">
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
@@ -72,7 +74,13 @@
     document.getElementById('myCanvas').style.width='200px'
     document.getElementById('myCanvas').style.height='1000px'
 }">
-
+<input type="button" value="play Normal" onclick="{
+    document.getElementById('myImage01').src='mainsheet03.png'
+    document.getElementById('myImage01').style.width='1000px'
+    document.getElementById('myImage01').style.height='200px'
+    document.getElementById('myCanvas').style.width='1000px'
+    document.getElementById('myCanvas').style.height='200px'
+}">
 
 
 

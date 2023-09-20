@@ -13,14 +13,14 @@
     let ctx = myCanvas.getContext("2d");
     let dotX = 20;
     let myY = 20
-    let myChangeX = 30
+    let myChangeX = 10
     let myChangeNote = 40    // space between notes
     let mySelectNote = 30    // x or y of actual note
 
-    let myOctaveChange = 100    // x or y of actual note
+    let myOctaveChange = 10    // x or y of actual note
     let mySong;
     let myNormal = true
-    let myRadius = 15
+    let myRadius = 12
     let myDown = true
     let myRun = true
 
@@ -43,7 +43,7 @@
         //   mySelectNote = parseInt(mySong[0][0]) * 30
             let myOctaveUp = 0    
             let myOctaveDown = 0  
-            let myOctaveMove = 40
+            let myOctaveMove = 20
             
             let myNote = parseInt(mySong[myLoop])
             console.log('parseInt(mySong[myLoop]): ' + parseInt(mySong[myLoop]) )
@@ -97,7 +97,7 @@
         
    
         // Move the dot to the left using async/await
-        await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
+        await new Promise((resolve) => setTimeout(resolve, 30)); // Simulated delay
         if (myNormal){
           dotX -= 2;   // normal
         } else {

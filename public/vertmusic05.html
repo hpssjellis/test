@@ -46,8 +46,8 @@
             let myOctaveMove = 20
 
             let myIn = mySong[myLoop]
-            myIn.replace('\'','');
-            myIn.replace(',', '');
+            myIn = myIn.replace('\'','');
+            myIn =  myIn.replace(',', '');
             let myNote = parseInt(myIn)
             console.log('parseInt(mySong[myLoop]): ' + parseInt(mySong[myLoop]) )
 

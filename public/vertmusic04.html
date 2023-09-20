@@ -47,9 +47,9 @@
             
             let myNote = parseInt(mySong[myLoop])
             console.log('parseInt(mySong[myLoop])')
-            console.log(myNote)
+            console.log(parseInt(mySong[myLoop]))
             
-            if (myNote == 0){
+            if (myNote == 0 || myNote NaN ){
                 if (mySong[myLoop].includes('@')) {myNote = 10}
                 if (mySong[myLoop].includes('*')) {myNote = 11}
             }    // parseInt did not work
@@ -66,8 +66,8 @@
 
             let myLength = myTemp.length
             
-           // console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength)
-          //  console.log(myTemp)
+            console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOctaveChange' + myOctaveChange)
+          // console.log(myTemp):
           //  console.log('myLength')
            // console.log(myLength)
             

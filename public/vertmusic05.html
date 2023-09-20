@@ -44,8 +44,11 @@
             let myOctaveUp = 0    
             let myOctaveDown = 0  
             let myOctaveMove = 20
-            
-            let myNote = parseInt(mySong[myLoop])
+
+            let myIn = mySong[myLoop]
+            myIn.replace('\'','');
+            myIn.replace(',', '');
+            let myNote = parseInt(myIn)
             console.log('parseInt(mySong[myLoop]): ' + parseInt(mySong[myLoop]) )
 
             
@@ -63,7 +66,7 @@
           //  console.log('myOctaveChange')
           //  console.log(myOctaveChange)
             
-            let myTemp = mySong[myLoop].replace('-', '')
+            let myTemp = mySong[myLoop].replace('_', '')
 
             let myLength = myTemp.length   // not yet dealt with
             

@@ -38,7 +38,7 @@
 
         for (myLoop=0; myLoop < mySong.length; myLoop++){
         //   mySelectNote = parseInt(mySong[0][0]) * 30
-            let myTemp = mySong[myLoop][0]
+            let myTemp = mySong[myLoop][0].replace('-', '')
             if (mySong[myLoop][0] == '@') {myTemp = 10}
             if (mySong[myLoop][0] == '*') {myTemp = 11}
             let myLength = mySong[myLoop].length

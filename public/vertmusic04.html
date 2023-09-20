@@ -55,8 +55,8 @@
             }    // parseInt did not work
             console.log('myNote')
             console.log(myNote)
-            myOctaveUp = str.split('\'').length-1
-            myOctaveDown = str.split(',').length-1
+            myOctaveUp = myNote.split('\'').length-1
+            myOctaveDown = myNote.split(',').length-1
 
             myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
             console.log('myOctaveChange')

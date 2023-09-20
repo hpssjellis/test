@@ -2,7 +2,7 @@
 <html>
 
 <body>
-    <h6>Vwersion 0.0.7</h6></h6>
+
     <img id="myImage01" src="mainsheet03.png" width="1000px"  height="400px  style="position:absolute; left:0; top:0;  ">
 
     <canvas id="myCanvas" width="1000px"  height="400px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
@@ -34,14 +34,14 @@
             // Draw the dot at the new position
             if (myNormal){
             ctx.beginPath();
-            ctx.arc(dotX, myCanvas.height / 2, 5, 0, Math.PI * 2);
+            ctx.ellipse(dotX, 300, 5, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
 
             
             ctx.beginPath();
-            ctx.arc(dotX+myChangeX, myCanvas.height / 2, 5, 0, Math.PI * 2);
+            ctx.ellipse(dotX+myChangeX, 300, 5,  5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
@@ -49,13 +49,13 @@
 
             
             ctx.beginPath();
-            ctx.arc(myCanvas.width / 2, dotX,  0, 5, Math.PI * 2);
+            ctx.ellipse(300, dotX, 5, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
                 
              ctx.beginPath();
-            ctx.arc(myCanvas.width / 2, dotX+myChangeX,  0, 5, Math.PI * 2);
+            ctx.ellipse(300, dotX+myChangeX, 5, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();      
@@ -77,7 +77,7 @@
     </script>
 
 <br><br><br><br><br><br><br><br>
-
+<h6>Vwersion 0.0.7</h6></h6>
 <h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
 
 <textarea id="myArea01" rows=6 cols=70 NOWRAP>

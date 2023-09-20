@@ -3,9 +3,9 @@
 
 <body>
 
-    <img id="myImage01" src="mainsheet03.png" width="2000px"  height="800px  style="position:absolute; left:0; top:0;  ">
+    <img id="myImage01" src="mainsheet03.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
 
-    <canvas id="myCanvas" width="2000px"  height="800px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
+    <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
 
 <script>
     // Define your variables with "my" prefix
@@ -16,6 +16,7 @@
     let myChangeX = 50
     let mySong;
     let myNormal = true
+    let myRadius = 20
 
     async function moveDot() {
         // Clear the canvas
@@ -41,14 +42,14 @@
         // Draw the dot at the new position
         if (myNormal){
         ctx.beginPath();
-        ctx.arc(dotX, myY, 5,  0, Math.PI * 2);
+        ctx.arc(dotX, myY, myRadius,  0, Math.PI * 2);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();
 
         
         ctx.beginPath();
-        ctx.arc(dotX+myChangeX, myY, 5,   0, Math.PI * 2);
+        ctx.arc(dotX+myChangeX, myY, myRadius,   0, Math.PI * 2);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();
@@ -56,13 +57,13 @@
 
         
         ctx.beginPath();
-        ctx.arc(myY, dotX, 5,  0, Math.PI * 2);
+        ctx.arc(myY, dotX, myRadius,  0, Math.PI * 2);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();
             
          ctx.beginPath();
-        ctx.arc(myY, dotX+myChangeX, 5, 0, Math.PI * 2);
+        ctx.arc(myY, dotX+myChangeX, myRadius, 0, Math.PI * 2);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();      

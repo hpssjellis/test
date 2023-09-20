@@ -13,10 +13,11 @@
     let ctx = myCanvas.getContext("2d");
     let dotX = 200;
     let myY = 200
-    let myChangeX = 50
+    let myChangeX = 30
+    let myChangeNote = 30
     let mySong;
     let myNormal = true
-    let myRadius = 20
+    let myRadius = 15
     let myDown = true
 
     async function moveDot() {
@@ -35,9 +36,22 @@
         */
 
         for (myLoop=0; myLoop <= mySong.length; myLoop++){
-
-             console.log(myLoop)
-            
+        
+          // Draw the dot at the new position
+            if (myNormal){
+                ctx.beginPath();
+                ctx.arc(dotX+(myChangeNote*myLoop), myY, myRadius,  0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+            } else {
+                ctx.beginPath();
+                ctx.arc(myY, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+                
+            }
         }
 
         // Draw the dot at the new position

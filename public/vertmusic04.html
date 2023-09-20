@@ -49,7 +49,7 @@
             console.log('parseInt(mySong[myLoop])')
             console.log(parseInt(mySong[myLoop]))
             
-            if (myNote == 0 || myNote NaN ){
+            if (myNote == 0 ||  isNaN(myNote) ){
                 if (mySong[myLoop].includes('@')) {myNote = 10}
                 if (mySong[myLoop].includes('*')) {myNote = 11}
             }    // parseInt did not work

@@ -34,14 +34,14 @@
             // Draw the dot at the new position
             if (myNormal){
             ctx.beginPath();
-            ctx.ellipse(dotX, 300, 5, 5, 0, Math.PI * 2);
+            ctx.ac(dotX, 300, 5,  0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
 
             
             ctx.beginPath();
-            ctx.ellipse(dotX+myChangeX, 300, 5,  5, 0, Math.PI * 2);
+            ctx.arc(dotX+myChangeX, 300, 5,   0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
@@ -49,13 +49,13 @@
 
             
             ctx.beginPath();
-            ctx.ellipse(300, dotX, 5, 5, 0, Math.PI * 2);
+            ctx.arc(300, dotX, 5,  0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
                 
              ctx.beginPath();
-            ctx.ellipse(300, dotX+myChangeX, 5, 5, 0, Math.PI * 2);
+            ctx.arc(300, dotX+myChangeX, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();      

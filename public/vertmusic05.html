@@ -44,12 +44,21 @@
             let myOctaveUp = 0    
             let myOctaveDown = 0  
             let myOctaveMove = 20
-
             let myIn = mySong[myLoop]
+            
+            console.log('myIn')
+            console.log(myIn)
+            
             myIn = myIn.replace('\'','');
             myIn =  myIn.replace(',', '');
+
+            
+
+            console.log('myIn')
+            console.log(myIn)
+            
             let myNote = parseInt(myIn)
-            console.log('parseInt(mySong[myLoop]): ' + parseInt(mySong[myLoop]) )
+            console.log('parseInt(myIn): ' + parseInt(myIn) )
 
             
             if (  isNaN(myNote) ){

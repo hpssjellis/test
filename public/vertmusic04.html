@@ -38,9 +38,17 @@
 
         for (myLoop=0; myLoop <= mySong.length; myLoop++){
         //   mySelectNote = parseInt(mySong[0][0]) * 30
-            console.log('mySong[0]')
-            console.log(mySong[0])
-            mySelectNote = 20
+            let myTemp = mySong[myLoop][0]
+            if (mySong[myLoop][0] == '@') {myTemp = 10}
+            if (mySong[myLoop][0] == '*') {myTemp = 11}
+            let myLength = mySong[myLoop].length
+            
+            console.log('myTemp')
+            console.log(myTemp)
+            console.log('myLength')
+            console.log(myLength)
+            
+            mySelectNote = myTemp * 5
           // Draw the dot at the new position
             if (myNormal){
                 ctx.beginPath();
@@ -59,37 +67,7 @@
         }
 
 
-        /*
-        // Draw the dot at the new position
-        if (myNormal){
-        ctx.beginPath();
-        ctx.arc(dotX, myY, myRadius,  0, Math.PI * 2);
-        ctx.fillStyle = "black";
-        ctx.fill();
-        ctx.closePath();
 
-        
-        ctx.beginPath();
-        ctx.arc(dotX+myChangeX, myY, myRadius,   0, Math.PI * 2);
-        ctx.fillStyle = "black";
-        ctx.fill();
-        ctx.closePath();
-        } else {
-
-        
-        ctx.beginPath();
-        ctx.arc(myY, dotX, myRadius,  0, Math.PI * 2);
-        ctx.fillStyle = "black";
-        ctx.fill();
-        ctx.closePath();
-            
-         ctx.beginPath();
-        ctx.arc(myY, dotX+myChangeX, myRadius, 0, Math.PI * 2);
-        ctx.fillStyle = "black";
-        ctx.fill();
-        ctx.closePath();      
-     }
-*/
 
             
         

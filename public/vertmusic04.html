@@ -36,14 +36,14 @@
 
         */
 
-        for (myLoop=0; myLoop <= mySong.length; myLoop++){
+        for (myLoop=0; myLoop < mySong.length; myLoop++){
         //   mySelectNote = parseInt(mySong[0][0]) * 30
             let myTemp = mySong[myLoop][0]
             if (mySong[myLoop][0] == '@') {myTemp = 10}
             if (mySong[myLoop][0] == '*') {myTemp = 11}
             let myLength = mySong[myLoop].length
             
-            console.log('mySong: '+mySong[myTemp]+ ',myTemp: '+myTemp+', myLenth: '+myLength)
+            console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength)
           //  console.log(myTemp)
           //  console.log('myLength')
            // console.log(myLength)

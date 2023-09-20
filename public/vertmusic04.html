@@ -3,7 +3,7 @@
 
 <body>
 
-    <img id="myImage01" src="mainsheet03.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
+    <img id="myImage01" src="mainsheet06.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
 
     <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
 
@@ -17,6 +17,7 @@
     let mySong;
     let myNormal = true
     let myRadius = 20
+    let myDirection = 'down'
 
     async function moveDot() {
         // Clear the canvas
@@ -95,17 +96,23 @@
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
     myNormal = false;
-    document.getElementById('myImage01').src='mainsheet04flipped.png'
+    document.getElementById('myImage01').src='mainsheet06flipped.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">
 <input type="button" value="play Normal" onclick="{
     myNormal = true;
-    document.getElementById('myImage01').src='mainsheet03.png'
+    document.getElementById('myImage01').src='mainsheet06.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">
-
+<input type="button" value="play Normal-Vertical" onclick="{
+    myNormal = false;
+    myDirection='up'
+    document.getElementById('myImage01').src='mainsheet06Rotated.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
 
 
 </body>

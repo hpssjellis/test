@@ -46,10 +46,10 @@
             let myOctaveMove = 40
             
             let myNote = parseInt(mySong[myLoop])
-            console.log('parseInt(mySong[myLoop])')
-            console.log(parseInt(mySong[myLoop]))
+            console.log('parseInt(mySong[myLoop]): ' + parseInt(mySong[myLoop]) )
+
             
-            if (myNote == 0 ||  isNaN(myNote) ){
+            if (  isNaN(myNote) ){
                 myNote = -1;                      // just so it is a number
                 if (mySong[myLoop].includes('@')) {myNote = 10}
                 if (mySong[myLoop].includes('*')) {myNote = 11}
@@ -67,7 +67,7 @@
 
             let myLength = myTemp.length
             
-            console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + 'myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange)
+            console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', uo' + myOctaveUp+', down: '+myOctaveDown)
           // console.log(myTemp):
           //  console.log('myLength')
            // console.log(myLength)

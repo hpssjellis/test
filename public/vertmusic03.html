@@ -12,6 +12,7 @@
         let myCanvas = document.getElementById("myCanvas");
         let ctx = myCanvas.getContext("2d");
         let dotX = 200;
+        let myY = 200
         let myChangeX = 50
         let mySong;
         let myNormal = true
@@ -34,14 +35,14 @@
             // Draw the dot at the new position
             if (myNormal){
             ctx.beginPath();
-            ctx.arc(dotX, 300, 5,  0, Math.PI * 2);
+            ctx.arc(dotX, myY, 5,  0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
 
             
             ctx.beginPath();
-            ctx.arc(dotX+myChangeX, 300, 5,   0, Math.PI * 2);
+            ctx.arc(dotX+myChangeX, myY, 5,   0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
@@ -49,13 +50,13 @@
 
             
             ctx.beginPath();
-            ctx.arc(300, dotX, 5,  0, Math.PI * 2);
+            ctx.arc(myY, dotX, 5,  0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
                 
              ctx.beginPath();
-            ctx.arc(300, dotX+myChangeX, 5, 0, Math.PI * 2);
+            ctx.arc(myY, dotX+myChangeX, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();      

@@ -102,18 +102,14 @@
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
     myNormal = false;
     document.getElementById('myImage01').src='mainsheet03flipped.png'
-   // document.getElementById('myImage01').style.width='1000px'
-  //  document.getElementById('myImage01').style.height='200px'
-  //  document.getElementById('myCanvas').style.width='1000px'
-  //  document.getElementById('myCanvas').style.height='200px'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
 }">
 <input type="button" value="play Normal" onclick="{
     myNormal = true;
     document.getElementById('myImage01').src='mainsheet03.png'
-  //  document.getElementById('myImage01').style.width='1000px'
-   // document.getElementById('myImage01').style.height='200px'
-  //  document.getElementById('myCanvas').style.width='1000px'
-  //  document.getElementById('myCanvas').style.height='200px'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
 }">
 
 

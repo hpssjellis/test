@@ -16,6 +16,8 @@
     let myChangeX = 30
     let myChangeNote = 40    // space between notes
     let mySelectNote = 30    // x or y of actual note
+    let myOctave = 0    // x or y of actual note
+    let myOctaveChange = 100    // x or y of actual note
     let mySong;
     let myNormal = true
     let myRadius = 15
@@ -39,10 +41,18 @@
 
         for (myLoop=0; myLoop < mySong.length; myLoop++){
         //   mySelectNote = parseInt(mySong[0][0]) * 30
-            let myTemp = mySong[myLoop][0].replace('-', '')
-            if (mySong[myLoop][0] == '@') {myTemp = 10}
-            if (mySong[myLoop][0] == '*') {myTemp = 11}
-            let myLength = mySong[myLoop].length
+            let myNote = mySong[myLoop][0]   // look at the first letter
+            if (mySong[myLoop][0]=='\''){myOctave += 1; }
+            if (mySong[myLoop][1]=='\''){myOctave += 1; }
+            if (mySong[myLoop][2]=='\''){myOctave += 1; }
+            if (mySong[myLoop][0]==','){myOctave -= 1; }
+            if (mySong[myLoop][1]==','){myOctave -= 1; }
+            if (mySong[myLoop][2]==','){myOctave -= 1; }
+                
+            let myTemp = myNote.replace('-', '')
+            if (myNote == '@') {myTemp = 10}
+            if (myNote == '*') {myTemp = 11}
+            let myLength = myNote.length
             
            // console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength)
           //  console.log(myTemp)
@@ -144,10 +154,11 @@
     if(myRun){
        myRun = false
         document.getElementById('myStopButton').value = 'Go'
-        requestAnimationFrame(moveDot);
+
     } else {
        myRun = true   
         document.getElementById('myStopButton').value = 'Stop'
+        requestAnimationFrame(moveDot);
     }
 }">
 

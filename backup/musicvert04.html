@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <img id="myImage01" src="mainsheet07.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
+
+    <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
+
+<script>
+    // Define your variables with "my" prefix
+    let myCanvas = document.getElementById("myCanvas");
+    let ctx = myCanvas.getContext("2d");
+    let dotX = 200;
+    let myY = 200
+    let myChangeX = 30
+    let myChangeNote = 30
+    let mySong;
+    let myNormal = true
+    let myRadius = 15
+    let myDown = true
+
+    async function moveDot() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+        /*
+        // Draw the horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, myCanvas.height / 2);
+        ctx.lineTo(myCanvas.width, myCanvas.height / 2);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+
+        */
+
+        for (myLoop=0; myLoop <= mySong.length; myLoop++){
+        
+          // Draw the dot at the new position
+            if (myNormal){
+                ctx.beginPath();
+                ctx.arc(dotX+(myChangeNote*myLoop), myY, myRadius,  0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+            } else {
+                ctx.beginPath();
+                ctx.arc(myY, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+                
+            }
+        }
+
+        // Draw the dot at the new position
+        if (myNormal){
+        ctx.beginPath();
+        ctx.arc(dotX, myY, myRadius,  0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        
+        ctx.beginPath();
+        ctx.arc(dotX+myChangeX, myY, myRadius,   0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+        } else {
+
+        
+        ctx.beginPath();
+        ctx.arc(myY, dotX, myRadius,  0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+            
+         ctx.beginPath();
+        ctx.arc(myY, dotX+myChangeX, myRadius, 0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();      
+        }
+   
+        // Move the dot to the left using async/await
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
+        if (myNormal){
+          dotX -= 2;   // normal
+        } else {
+            if (myDown){
+               dotX += 2;      //vertical go down
+            } else {
+               dotX -= 2;     // veritcal go up
+            }
+                  
+        }
+
+
+        // Repeat the animation
+      //  if (dotX > 0) {
+            requestAnimationFrame(moveDot);
+      //  }
+    }
+</script>
+
+<h6>Version 0.1.0-11</h6></h6>
+<h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
+
+<textarea id="myArea01" rows=6 cols=70 NOWRAP>
+*_ '2__ *_ '4___ *_ '2___ '4__ *______---------- 7__ *__ '0__ *_ 9__ 7___ 9__ 4__ *_ *______
+</textarea><br>
+
+
+
+<input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    myNormal = false;
+    myDown = true
+    document.getElementById('myImage01').src='mainsheet07flipped.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal" onclick="{
+    myNormal = true;   
+    myDown = true
+    document.getElementById('myImage01').src='mainsheet07.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal-Vertical" onclick="{
+    myNormal = false;
+    myDown = false
+    document.getElementById('myImage01').src='mainsheet07rotated.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+
+
+</body>
+</html>

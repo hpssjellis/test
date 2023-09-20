@@ -91,12 +91,13 @@
 *_ '2__ *_ '4___ *_ '2___ '4__ *______---------- 7__ *__ '0__ *_ 9__ 7___ 9__ 4__ *_ *______
 </textarea><br>
 
-<input type="button" value="Start Moving" onclick="moveDot()">
-
-<input type="button" value="play Normal" onclick="{
+<input type="button" value="Play" onclick="{
     mySong = document.getElementById('myArea01').value.split(' ')
-   // alert(mySong)
+    moveDot()
+
 }">
+
+
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
     myNormal = false;

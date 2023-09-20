@@ -2,8 +2,8 @@
 <html>
 
 <body>
-    <h6>Vwersion 0.0.3</h6></h6>
-    <img id="myImage01" src="myImage01.jpg" width="1000px"  height="400px  style="position:absolute; left:0; top:0;  ">
+    <h6>Vwersion 0.0.4</h6></h6>
+    <img id="myImage01" src="mainsheet01.png" width="1000px"  height="400px  style="position:absolute; left:0; top:0;  ">
 
     <canvas id="myCanvas" width="1000px"  height="400px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
 
@@ -67,7 +67,11 @@
 
     <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
         alert('flipping image')
-        document.getElementById('myImage01').src='myBackground01.jpg'
+        document.getElementById('myImage01').src='mainsheet02flipped.png'
+        document.getElementById('myImage01').width='200px'
+        document.getElementById('myImage01').height='1000px'
+        document.getElementById('myCanvas').width='200px'
+        document.getElementById('myCanvas').height='1000px'
     }">
   
 

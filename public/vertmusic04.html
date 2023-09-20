@@ -14,7 +14,8 @@
     let dotX = 200;
     let myY = 200
     let myChangeX = 30
-    let myChangeNote = 30
+    let myChangeNote = 40    // space between notes
+    let mySelectNote = 30    // x or y of actual note
     let mySong;
     let myNormal = true
     let myRadius = 15
@@ -36,17 +37,17 @@
         */
 
         for (myLoop=0; myLoop <= mySong.length; myLoop++){
-        
+           mySelectNote = parseInt(mySong[0]) * 30
           // Draw the dot at the new position
             if (myNormal){
                 ctx.beginPath();
-                ctx.arc(dotX+(myChangeNote*myLoop), myY, myRadius,  0, Math.PI * 2);
+                ctx.arc(dotX+(myChangeNote*myLoop), myY+mySelectNote, myRadius,  0, Math.PI * 2);
                 ctx.fillStyle = "black";
                 ctx.fill();
                 ctx.closePath();
             } else {
                 ctx.beginPath();
-                ctx.arc(myY, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                ctx.arc(myY+mySelectNote, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
                 ctx.fillStyle = "black";
                 ctx.fill();
                 ctx.closePath();
@@ -54,6 +55,8 @@
             }
         }
 
+
+        /*
         // Draw the dot at the new position
         if (myNormal){
         ctx.beginPath();
@@ -82,6 +85,10 @@
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();      
+
+*/
+
+            
         }
    
         // Move the dot to the left using async/await

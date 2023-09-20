@@ -49,16 +49,25 @@
 
             
             ctx.beginPath();
-            ctx.arc(myCanvas.width / 2, dotX-myChangeX,  0, 5, Math.PI * 2);
+            ctx.arc(myCanvas.width / 2, dotX,  0, 5, Math.PI * 2);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
                 
+             ctx.beginPath();
+            ctx.arc(myCanvas.width / 2, dotX+myChangeX,  0, 5, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();      
             }
 
             // Move the dot to the left using async/await
             await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
-            dotX -= 2;
+            if (myNormal){
+              dotX -= 2;
+            } else {
+              dotX += 2;    
+            }
 
             // Repeat the animation
             if (dotX > 0) {

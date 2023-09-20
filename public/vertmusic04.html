@@ -138,7 +138,13 @@
     alert(mySong)
 }">
 <input type="button" value="Stop" onclick="{
-    myRun=false
+    if(myRun){
+       myRun = false
+        this.value='weird'
+    } else {
+       myRun = true   
+        this.value='Cool'
+    }
 }">
 
 </body>

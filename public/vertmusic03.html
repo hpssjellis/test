@@ -14,11 +14,13 @@
         let dotX = 200;
         let myChangeX = 50
         let mySong;
+        let myNormal = true
 
         async function moveDot() {
             // Clear the canvas
             ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
+            /*
             // Draw the horizontal line
             ctx.beginPath();
             ctx.moveTo(0, myCanvas.height / 2);
@@ -27,7 +29,10 @@
             ctx.stroke();
             ctx.closePath();
 
+            */
+
             // Draw the dot at the new position
+            if (myNormal){
             ctx.beginPath();
             ctx.arc(dotX, myCanvas.height / 2, 5, 0, Math.PI * 2);
             ctx.fillStyle = "black";
@@ -40,6 +45,16 @@
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
+            } else {
+
+            
+            ctx.beginPath();
+            ctx.arc(myCanvas.width / 2, dotX+myChangeX,  5, 0, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+                
+            }
 
             // Move the dot to the left using async/await
             await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
@@ -68,6 +83,7 @@
 }">
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    myNormal = false;
     document.getElementById('myImage01').src='mainsheet03flipped.png'
     document.getElementById('myImage01').style.width='200px'
     document.getElementById('myImage01').style.height='1000px'
@@ -75,6 +91,7 @@
     document.getElementById('myCanvas').style.height='1000px'
 }">
 <input type="button" value="play Normal" onclick="{
+    myNormal = true;
     document.getElementById('myImage01').src='mainsheet03.png'
     document.getElementById('myImage01').style.width='1000px'
     document.getElementById('myImage01').style.height='200px'

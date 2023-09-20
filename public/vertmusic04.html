@@ -11,8 +11,8 @@
     // Define your variables with "my" prefix
     let myCanvas = document.getElementById("myCanvas");
     let ctx = myCanvas.getContext("2d");
-    let dotX = 200;
-    let myY = 200
+    let dotX = 20;
+    let myY = 20
     let myChangeX = 30
     let myChangeNote = 40    // space between notes
     let mySelectNote = 30    // x or y of actual note
@@ -43,7 +43,7 @@
             if (mySong[myLoop][0] == '*') {myTemp = 11}
             let myLength = mySong[myLoop].length
             
-            console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength)
+           // console.log('#' + myLoop + ', mySong: ' + mySong[myLoop] + ', myTemp: ' + myTemp + ', myLenth: ' + myLength)
           //  console.log(myTemp)
           //  console.log('myLength')
            // console.log(myLength)
@@ -103,13 +103,17 @@
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    let dotX = 200;
+    let myY = 200
     myNormal = false;
     myDown = true
     document.getElementById('myImage01').src='mainsheet07flipped.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">
-<input type="button" value="play Normal" onclick="{
+<input type="button" value="play Normal" onclick="{    
+    let dotX = 200;
+    let myY = 200
     myNormal = true;   
     myDown = true
     document.getElementById('myImage01').src='mainsheet07.png'
@@ -117,6 +121,8 @@
     moveDot()
 }">
 <input type="button" value="play Normal-Vertical" onclick="{
+    let dotX = 200;
+    let myY = 200
     myNormal = false;
     myDown = false
     document.getElementById('myImage01').src='mainsheet07rotated.png'

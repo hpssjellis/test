@@ -50,23 +50,24 @@
             console.log(parseInt(mySong[myLoop]))
             
             if (myNote == 0 ||  isNaN(myNote) ){
+                myNote = -1;                      // just so it is a number
                 if (mySong[myLoop].includes('@')) {myNote = 10}
                 if (mySong[myLoop].includes('*')) {myNote = 11}
             }    // parseInt did not work
-            console.log('myNote')
-            console.log(myNote)
+           // console.log('myNote')
+           // console.log(myNote)
             myOctaveUp = mySong[myLoop].split('\'').length-1
             myOctaveDown = mySong[myLoop].split(',').length-1
 
             myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
-            console.log('myOctaveChange')
-            console.log(myOctaveChange)
+          //  console.log('myOctaveChange')
+          //  console.log(myOctaveChange)
             
             let myTemp = mySong[myLoop].replace('-', '')
 
             let myLength = myTemp.length
             
-            console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + 'myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOctaveChange: ' + myOctaveChange)
+            console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + 'myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange)
           // console.log(myTemp):
           //  console.log('myLength')
            // console.log(myLength)

@@ -109,6 +109,7 @@
     myRun = true
     myNormal = false;
     myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
     document.getElementById('myImage01').src='mainsheet07flipped.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
@@ -119,6 +120,7 @@
     myRun = true
     myNormal = true;   
     myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
     document.getElementById('myImage01').src='mainsheet07.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
@@ -129,6 +131,7 @@
     myRun = true
     myNormal = false;
     myDown = false
+    document.getElementById('myStopButton').value = 'Stop'
     document.getElementById('myImage01').src='mainsheet07rotated.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
@@ -137,13 +140,14 @@
     mySong = document.getElementById('myArea01').value.split(' ')
     alert(mySong)
 }">
-<input type="button" value="Stop" onclick="{
+<input id="myStopButton" type="button" value="Stop" onclick="{
     if(myRun){
        myRun = false
-        this.value='weird'
+        document.getElementById('myStopButton').value = 'Go'
+        requestAnimationFrame(moveDot);
     } else {
        myRun = true   
-        this.value='Cool'
+        document.getElementById('myStopButton').value = 'Stop'
     }
 }">
 

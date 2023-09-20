@@ -17,7 +17,7 @@
     let mySong;
     let myNormal = true
     let myRadius = 20
-    let myDirection = 'down'
+    let myDown = true
 
     async function moveDot() {
         // Clear the canvas
@@ -73,10 +73,16 @@
         // Move the dot to the left using async/await
         await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
         if (myNormal){
-          dotX -= 2;
+          dotX -= 2;   // normal
         } else {
-          dotX += 2;    
+            if (myDown){
+               dotX += 2;      //vertical go down
+            } else {
+               dotX -= 2;     // veritcal go up
+            }
+                  
         }
+
 
         // Repeat the animation
       //  if (dotX > 0) {
@@ -85,7 +91,7 @@
     }
 </script>
 
-<h6>Version 0.0.10</h6></h6>
+<h6>Version 0.1.0-11</h6></h6>
 <h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
 
 <textarea id="myArea01" rows=6 cols=70 NOWRAP>
@@ -96,20 +102,22 @@
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
     myNormal = false;
+    myDown = true
     document.getElementById('myImage01').src='mainsheet06flipped.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">
 <input type="button" value="play Normal" onclick="{
-    myNormal = true;
+    myNormal = true;   
+    myDown = true
     document.getElementById('myImage01').src='mainsheet06.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">
 <input type="button" value="play Normal-Vertical" onclick="{
     myNormal = false;
-    myDirection='up'
-    document.getElementById('myImage01').src='mainsheet06Rotated.png'
+    myDown = false
+    document.getElementById('myImage01').src='mainsheet06rotated.png'
     mySong = document.getElementById('myArea01').value.split(' ')
     moveDot()
 }">

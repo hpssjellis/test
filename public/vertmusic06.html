@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <img id="myImage01" src="mainsheet07.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
+
+    <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
+
+<script>
+    // Define your variables with "my" prefix
+    let myCanvas = document.getElementById("myCanvas");
+    let ctx = myCanvas.getContext("2d");
+    let dotX
+    let myY
+    let myChangeX = 10
+    let myChangeNoteVert = 47    // space between notes
+    let myChangeNoteHoriz = 15    // space between notes
+    let mySelectNote = 30    // x or y of actual note
+
+    let myOctaveChange = 10    // x or y of actual note
+    let mySong;
+    let myNormal = true
+    let myRadiusVert = 45
+    let myRadiusHoriz = 14
+    let myDown = true
+    let myRun = true
+
+    async function moveDot() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+        /*
+        // Draw the horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, myCanvas.height / 2);
+        ctx.lineTo(myCanvas.width, myCanvas.height / 2);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+
+        */
+
+        // range ,,8 to '5  max notes
+
+        for (myLoop=0; myLoop < mySong.length; myLoop++){
+        //   mySelectNote = parseInt(mySong[0][0]) * 30
+            let myOctaveUp = 0    
+            let myOctaveDown = 0  
+            let myOctaveMove = 20
+
+            
+            let myIn = mySong[myLoop]
+            if (myIn != '') {
+             //   console.log('myIn')
+             //   console.log(myIn)
+                
+                myIn = myIn.replaceAll('\'','');
+                myIn =  myIn.replaceAll(',', '');
+    
+                
+    
+             //   console.log('myIn')
+              //  console.log(myIn)
+                
+                let myNote = parseInt(myIn)
+               // console.log('parseInt(myIn): ' + parseInt(myIn) )
+    
+                
+                if (  isNaN(myNote) ){
+                    myNote = -1;                      // just so it is a number
+                    if (mySong[myLoop].includes('@')) {myNote = 10}
+                    if (mySong[myLoop].includes('*')) {myNote = 11}
+                }    // parseInt did not work
+               // console.log('myNote')
+               // console.log(myNote)
+                myOctaveUp = mySong[myLoop].split('\'').length-1
+                myOctaveDown = mySong[myLoop].split(',').length-1
+    
+                myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+              //  console.log('myOctaveChange')
+              //  console.log(myOctaveChange)
+                
+                let myTemp = mySong[myLoop].replace('_', '')
+    
+                let myLength = myTemp.length   // not yet dealt with
+                
+            //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+       
+                
+
+              // Draw the dot at the new position
+                if (myNormal){
+                    mySelectNote = myTemp * myChangeNoteHoriz
+                    ctx.beginPath();
+                    ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.closePath();
+                } else {
+                       mySelectNote = myTemp * myChangeNoteVert
+                      if (myDown){
+                        ctx.beginPath();
+                    //    myX2 = myY+mySelectNote+myOctaveChange
+                     //   myY2 = dotX-(myChangeNoteVert*myLoop)
+                    //    console.log(myX2 + ', ' + myY2)
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        ctx.fill();
+                        ctx.closePath();
+                      } else {
+                        ctx.beginPath();
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        ctx.fill();
+                        ctx.closePath();
+                                 
+                    }
+                }  
+            }
+        }
+
+
+
+
+            
+        
+   
+        // Move the dot to the left using async/await
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
+        if (myNormal){
+          dotX -= 3;   // normal
+        } else {
+            if (myDown){
+               dotX += 4;      //vertical go down
+            } else {
+               dotX -= 2;     // veritcal go up
+            }
+                  
+        }
+
+
+        // Repeat the animation
+        if (myRun) {
+            requestAnimationFrame(moveDot);
+        }
+    }
+</script>
+
+<h6>Version 0.1.1-12</h6></h6>
+<h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
+
+<textarea id="myArea01" rows=6 cols=70 NOWRAP>
+0 0 '0 ,0 0 2 4 5 7 9  0 0 0
+</textarea><br>
+
+
+
+<input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    dotX = 300   //0    // start location
+    myY = 1030  //700    // line up the notes
+    myRun = true
+    myNormal = false;
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07flipped.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal" onclick="{    
+    dotX =   700   // 905;   // line up the notes
+    myY = 300    // start location
+    myRun = true
+    myNormal = true;   
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal-Vertical" onclick="{
+    dotX = 300;   // start location
+    myY = 1030   // line up the notes
+    myRun = true
+    myNormal = false;
+    myDown = false
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07rotated.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="Show" onclick="{
+    mySong = document.getElementById('myArea01').value.split(' ')
+    alert(mySong)
+}">
+<input id="myStopButton" type="button" value="Stop" onclick="{
+    if(myRun){
+       myRun = false
+        document.getElementById('myStopButton').value = 'Go'
+
+    } else {
+       myRun = true   
+        document.getElementById('myStopButton').value = 'Stop'
+        requestAnimationFrame(moveDot);
+    }
+}">
+
+</body>
+</html>

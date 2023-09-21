@@ -21,7 +21,8 @@
     let myOctaveChange = 10    // x or y of actual note
     let mySong;
     let myNormal = true
-    let myRadius = 15
+    let myRadiusVert = 40
+    let myRadiusHOriz = 15
     let myDown = true
     let myRun = true
 
@@ -92,7 +93,7 @@
                 if (myNormal){
                     mySelectNote = myTemp * myChangeNoteHoriz
                     ctx.beginPath();
-                    ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
+                    ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
                     ctx.fillStyle = "black";
                     ctx.fill();
                     ctx.closePath();
@@ -100,13 +101,13 @@
                        mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
                         ctx.beginPath();
-                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadius,  0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         ctx.fill();
                         ctx.closePath();
                       } else {
                         ctx.beginPath();
-                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadius,  0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         ctx.fill();
                         ctx.closePath();

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <img id="myImage01" src="mainsheet07.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
+
+    <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
+
+<script>
+    // Define your variables with "my" prefix
+    let myCanvas = document.getElementById("myCanvas");
+    let ctx = myCanvas.getContext("2d");
+    let dotX
+    let myY
+    let myChangeX = 10
+    let myChangeNote = 40    // space between notes
+    let mySelectNote = 30    // x or y of actual note
+
+    let myOctaveChange = 10    // x or y of actual note
+    let mySong;
+    let myNormal = true
+    let myRadius = 12
+    let myDown = true
+    let myRun = true
+
+    async function moveDot() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+        /*
+        // Draw the horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, myCanvas.height / 2);
+        ctx.lineTo(myCanvas.width, myCanvas.height / 2);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+
+        */
+
+        // range ,,8 to '5  max notes
+
+        for (myLoop=0; myLoop < mySong.length; myLoop++){
+        //   mySelectNote = parseInt(mySong[0][0]) * 30
+            let myOctaveUp = 0    
+            let myOctaveDown = 0  
+            let myOctaveMove = 20
+            let myIn = mySong[myLoop]
+            
+            console.log('myIn')
+            console.log(myIn)
+            
+            myIn = myIn.replaceAll('\'','');
+            myIn =  myIn.replaceAll(',', '');
+
+            
+
+            console.log('myIn')
+            console.log(myIn)
+            
+            let myNote = parseInt(myIn)
+            console.log('parseInt(myIn): ' + parseInt(myIn) )
+
+            
+            if (  isNaN(myNote) ){
+                myNote = -1;                      // just so it is a number
+                if (mySong[myLoop].includes('@')) {myNote = 10}
+                if (mySong[myLoop].includes('*')) {myNote = 11}
+            }    // parseInt did not work
+           // console.log('myNote')
+           // console.log(myNote)
+            myOctaveUp = mySong[myLoop].split('\'').length-1
+            myOctaveDown = mySong[myLoop].split(',').length-1
+
+            myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+          //  console.log('myOctaveChange')
+          //  console.log(myOctaveChange)
+            
+            let myTemp = mySong[myLoop].replace('_', '')
+
+            let myLength = myTemp.length   // not yet dealt with
+            
+        //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+   
+            
+            mySelectNote = myTemp * myChangeNote
+          // Draw the dot at the new position
+            if (myNormal){
+                ctx.beginPath();
+                ctx.arc(dotX+(myChangeNote*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+            } else {
+                  if (myDown){
+                    ctx.beginPath();
+                    ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.closePath();
+                  } else {
+                    ctx.beginPath();
+                    ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.closePath();
+                             
+                }
+                
+            }
+        }
+
+
+
+
+            
+        
+   
+        // Move the dot to the left using async/await
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
+        if (myNormal){
+          dotX -= 4;   // normal
+        } else {
+            if (myDown){
+               dotX += 2;      //vertical go down
+            } else {
+               dotX -= 2;     // veritcal go up
+            }
+                  
+        }
+
+
+        // Repeat the animation
+        if (myRun) {
+            requestAnimationFrame(moveDot);
+        }
+    }
+</script>
+
+<h6>Version 0.1.1-12</h6></h6>
+<h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
+
+<textarea id="myArea01" rows=6 cols=70 NOWRAP>
+0 0 '0 ,0 0 2 4 5 7 9  0 0 0
+</textarea><br>
+
+
+
+<input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    dotX = 0;
+    myY = 900
+    myRun = true
+    myNormal = false;
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07flipped.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal" onclick="{    
+    dotX = 900;
+    myY = 300
+    myRun = true
+    myNormal = true;   
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal-Vertical" onclick="{
+    dotX = 500;
+    myY = 900
+    myRun = true
+    myNormal = false;
+    myDown = false
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07rotated.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="Show" onclick="{
+    mySong = document.getElementById('myArea01').value.split(' ')
+    alert(mySong)
+}">
+<input id="myStopButton" type="button" value="Stop" onclick="{
+    if(myRun){
+       myRun = false
+        document.getElementById('myStopButton').value = 'Go'
+
+    } else {
+       myRun = true   
+        document.getElementById('myStopButton').value = 'Stop'
+        requestAnimationFrame(moveDot);
+    }
+}">
+
+</body>
+</html>

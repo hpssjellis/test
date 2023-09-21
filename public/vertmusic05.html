@@ -111,10 +111,10 @@
         // Move the dot to the left using async/await
         await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
         if (myNormal){
-          dotX -= 2;   // normal
+          dotX -= 4;   // normal
         } else {
             if (myDown){
-               dotX += 2;      //vertical go down
+               dotX -= 2;      //vertical go down
             } else {
                dotX -= 2;     // veritcal go up
             }

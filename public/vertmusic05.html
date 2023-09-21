@@ -11,8 +11,8 @@
     // Define your variables with "my" prefix
     let myCanvas = document.getElementById("myCanvas");
     let ctx = myCanvas.getContext("2d");
-    let dotX = 20;
-    let myY = 20
+    let dotX
+    let myY
     let myChangeX = 10
     let myChangeNote = 40    // space between notes
     let mySelectNote = 30    // x or y of actual note
@@ -141,7 +141,7 @@
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
-    dotX = 200;
+    dotX = 300;
     myY = 900
     myRun = true
     myNormal = false;
@@ -153,7 +153,7 @@
 }">
 <input type="button" value="play Normal" onclick="{    
     dotX = 900;
-    myY = 200
+    myY = 300
     myRun = true
     myNormal = true;   
     myDown = true
@@ -163,7 +163,7 @@
     moveDot()
 }">
 <input type="button" value="play Normal-Vertical" onclick="{
-    dotX = 200;
+    dotX = 300;
     myY = 900
     myRun = true
     myNormal = false;

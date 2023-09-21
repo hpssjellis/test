@@ -46,68 +46,70 @@
             let myOctaveUp = 0    
             let myOctaveDown = 0  
             let myOctaveMove = 20
+
+            
             let myIn = mySong[myLoop]
-            
-            console.log('myIn')
-            console.log(myIn)
-            
-            myIn = myIn.replaceAll('\'','');
-            myIn =  myIn.replaceAll(',', '');
-
-            
-
-            console.log('myIn')
-            console.log(myIn)
-            
-            let myNote = parseInt(myIn)
-            console.log('parseInt(myIn): ' + parseInt(myIn) )
-
-            
-            if (  isNaN(myNote) ){
-                myNote = -1;                      // just so it is a number
-                if (mySong[myLoop].includes('@')) {myNote = 10}
-                if (mySong[myLoop].includes('*')) {myNote = 11}
-            }    // parseInt did not work
-           // console.log('myNote')
-           // console.log(myNote)
-            myOctaveUp = mySong[myLoop].split('\'').length-1
-            myOctaveDown = mySong[myLoop].split(',').length-1
-
-            myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
-          //  console.log('myOctaveChange')
-          //  console.log(myOctaveChange)
-            
-            let myTemp = mySong[myLoop].replace('_', '')
-
-            let myLength = myTemp.length   // not yet dealt with
-            
-        //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
-   
-            
-            mySelectNote = myTemp * myChangeNote
-          // Draw the dot at the new position
-            if (myNormal){
-                ctx.beginPath();
-                ctx.arc(dotX+(myChangeNote*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
-                ctx.fillStyle = "black";
-                ctx.fill();
-                ctx.closePath();
-            } else {
-                  if (myDown){
-                    ctx.beginPath();
-                    ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
-                    ctx.fillStyle = "black";
-                    ctx.fill();
-                    ctx.closePath();
-                  } else {
-                    ctx.beginPath();
-                    ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
-                    ctx.fillStyle = "black";
-                    ctx.fill();
-                    ctx.closePath();
-                             
-                }
+            if (myIn != '') {
+                console.log('myIn')
+                console.log(myIn)
                 
+                myIn = myIn.replaceAll('\'','');
+                myIn =  myIn.replaceAll(',', '');
+    
+                
+    
+                console.log('myIn')
+                console.log(myIn)
+                
+                let myNote = parseInt(myIn)
+                console.log('parseInt(myIn): ' + parseInt(myIn) )
+    
+                
+                if (  isNaN(myNote) ){
+                    myNote = -1;                      // just so it is a number
+                    if (mySong[myLoop].includes('@')) {myNote = 10}
+                    if (mySong[myLoop].includes('*')) {myNote = 11}
+                }    // parseInt did not work
+               // console.log('myNote')
+               // console.log(myNote)
+                myOctaveUp = mySong[myLoop].split('\'').length-1
+                myOctaveDown = mySong[myLoop].split(',').length-1
+    
+                myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+              //  console.log('myOctaveChange')
+              //  console.log(myOctaveChange)
+                
+                let myTemp = mySong[myLoop].replace('_', '')
+    
+                let myLength = myTemp.length   // not yet dealt with
+                
+            //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+       
+                
+                mySelectNote = myTemp * myChangeNote
+              // Draw the dot at the new position
+                if (myNormal){
+                    ctx.beginPath();
+                    ctx.arc(dotX+(myChangeNote*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.closePath();
+                } else {
+                      if (myDown){
+                        ctx.beginPath();
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        ctx.fill();
+                        ctx.closePath();
+                      } else {
+                        ctx.beginPath();
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        ctx.fill();
+                        ctx.closePath();
+                                 
+                    }
+                }  
             }
         }
 

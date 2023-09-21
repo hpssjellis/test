@@ -81,16 +81,14 @@
 
             let myLength = myTemp.length   // not yet dealt with
             
-            console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
-          // console.log(myTemp):
-          //  console.log('myLength')
-           // console.log(myLength)
+        //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+   
             
             mySelectNote = myTemp * myChangeNote
           // Draw the dot at the new position
             if (myNormal){
                 ctx.beginPath();
-                ctx.arc(dotX+(myChangeNote*myLoop), myY+mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
+                ctx.arc(dotX+(myChangeNote*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
                 ctx.fillStyle = "black";
                 ctx.fill();
                 ctx.closePath();
@@ -111,7 +109,7 @@
         
    
         // Move the dot to the left using async/await
-        await new Promise((resolve) => setTimeout(resolve, 30)); // Simulated delay
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
         if (myNormal){
           dotX -= 2;   // normal
         } else {

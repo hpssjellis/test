@@ -95,7 +95,7 @@
             } else {
                   if (myDown){
                     ctx.beginPath();
-                    ctx.arc(myY-mySelectNote-myOctaveChange, dotX+(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
+                    ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNote*myLoop), myRadius,  0, Math.PI * 2);
                     ctx.fillStyle = "black";
                     ctx.fill();
                     ctx.closePath();
@@ -148,7 +148,7 @@
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
-    dotX = -600;
+    dotX = 0;
     myY = 900
     myRun = true
     myNormal = false;

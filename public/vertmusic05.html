@@ -101,7 +101,9 @@
                        mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
                         ctx.beginPath();
-                          console.log(myY+mySelectNote+myOctaveChange+', '+dotX-(myChangeNoteVert*myLoop))
+                        myX = myY+mySelectNote+myOctaveChange
+                        myY = dotX-(myChangeNoteVert*myLoop)
+                        console.log(myX + ', ' + myY)
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         ctx.fill();

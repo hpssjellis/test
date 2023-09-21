@@ -21,7 +21,7 @@
     let myOctaveChange = 10    // x or y of actual note
     let mySong;
     let myNormal = true
-    let myRadius = 20
+    let myRadius = 15
     let myDown = true
     let myRun = true
 
@@ -51,16 +51,16 @@
             
             let myIn = mySong[myLoop]
             if (myIn != '') {
-                console.log('myIn')
-                console.log(myIn)
+             //   console.log('myIn')
+             //   console.log(myIn)
                 
                 myIn = myIn.replaceAll('\'','');
                 myIn =  myIn.replaceAll(',', '');
     
                 
     
-                console.log('myIn')
-                console.log(myIn)
+             //   console.log('myIn')
+              //  console.log(myIn)
                 
                 let myNote = parseInt(myIn)
                 console.log('parseInt(myIn): ' + parseInt(myIn) )
@@ -154,7 +154,7 @@
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
     dotX = 0;
-    myY = 1000  //line up the notes
+    myY = 9950  //line up the notes
     myRun = true
     myNormal = false;
     myDown = true
@@ -176,7 +176,7 @@
 }">
 <input type="button" value="play Normal-Vertical" onclick="{
     dotX = 300;
-    myY = 1000   // line up the notes
+    myY = 1030   // line up the notes
     myRun = true
     myNormal = false;
     myDown = false

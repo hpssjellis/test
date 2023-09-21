@@ -87,15 +87,17 @@
             //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
        
                 
-                mySelectNote = myTemp * myChangeNote
+
               // Draw the dot at the new position
                 if (myNormal){
+                    mySelectNote = myTemp * myChangeNoteHoriz
                     ctx.beginPath();
                     ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadius,  0, Math.PI * 2);
                     ctx.fillStyle = "black";
                     ctx.fill();
                     ctx.closePath();
                 } else {
+                       mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
                         ctx.beginPath();
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadius,  0, Math.PI * 2);

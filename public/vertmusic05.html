@@ -126,7 +126,7 @@
         // Move the dot to the left using async/await
         await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
         if (myNormal){
-          dotX -= 4;   // normal
+          dotX -= 3;   // normal
         } else {
             if (myDown){
                dotX += 2;      //vertical go down
@@ -154,7 +154,7 @@
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
-    dotX = 900;   // start location
+    dotX = -200;   // start location
     myY = 9950  // line up the notes
     myRun = true
     myNormal = false;

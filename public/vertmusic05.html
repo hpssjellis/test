@@ -101,9 +101,9 @@
                        mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
                         ctx.beginPath();
-                        myX2 = myY+mySelectNote+myOctaveChange
-                        myY2 = dotX-(myChangeNoteVert*myLoop)
-                        console.log(myX2 + ', ' + myY2)
+                    //    myX2 = myY+mySelectNote+myOctaveChange
+                     //   myY2 = dotX-(myChangeNoteVert*myLoop)
+                    //    console.log(myX2 + ', ' + myY2)
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         ctx.fill();
@@ -157,8 +157,8 @@
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
-    dotX = -1000;   // start location
-    myY = 9950  // line up the notes
+    dotX =0 // -1000;   // start location
+    myY = 0 //9950  // line up the notes
     myRun = true
     myNormal = false;
     myDown = true

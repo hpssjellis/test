@@ -96,7 +96,7 @@
                     mySelectNote = myTemp * myChangeNoteHoriz
                     ctx.beginPath();
                   //  ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
-                     ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz*length, myRadiusHoriz, Math.PI * 2, 0, Math.PI * 2);
+                     ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI /2, 0, Math.PI * 2);
                     
                     // ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
                     ctx.fillStyle = "black";

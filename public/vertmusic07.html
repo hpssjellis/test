@@ -84,8 +84,7 @@
                 
                 let myTemp = mySong[myLoop].replace('_', '')
     
-               // let myLength = myTemp.length   // not yet dealt with
-                let myLength = mySong[myLoop].split('_').length-1
+                let myLength = myTemp.length   // not yet dealt with
                 
             //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
        
@@ -106,19 +105,19 @@
                 } else {
                        mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
-                        
+                          mySharp = true
                         ctx.beginPath();
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
                     //    console.log(myX2 + ', ' + myY2)
-                        ctx.ellipse(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert*myLength, myRadiusVert, Math.PI /2, 0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();
                       } else {
-                      
+                        mySharp = false
                         ctx.beginPath();
-                        ctx.ellipse(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert*myLength, myRadiusVert, Math.PI /2, 0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();

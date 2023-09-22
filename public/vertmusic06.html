@@ -90,18 +90,19 @@
                // if (myNote % 12 == 0) { mySharp = false;  }              // 0
                 if (myNote % 12 == 1) { mySharp = true; myNote -= 1 }      // 1
                                                                            // 2
-                if (myNote % 12 == 3) { mySharp = true; myNote -= 1 }      // 3
+               else if (myNote % 12 == 3) { mySharp = true; myNote -= 1 }      // 3
                                                                            // 4
-                if (myNote % 12 == 5) { mySharp = false; myNote += 1 }     // 5
-                if (myNote % 12 == 6) { mySharp = true;  }      // 6
-                if (myNote % 12 == 7) { mySharp = false; myNote += 1 }      // 7
-                if (myNote % 12 == 8) { mySharp = true; }      // 8
-                if (myNote % 12 == 9) { mySharp = false; myNote += 1 }      // 9
-                if (myNote % 12 == 10) { mySharp = true;  }     // @
-                if (myNote % 12 == 11) { mySharp = false;  }     // *
+               else if (myNote % 12 == 5) { mySharp = false; myNote += 1 }     // 5
+               else if (myNote % 12 == 6) { mySharp = true;  }      // 6
+               else if (myNote % 12 == 7) { mySharp = false; myNote += 1 }      // 7
+               else if (myNote % 12 == 8) { mySharp = true; }      // 8
+               else if (myNote % 12 == 9) { mySharp = false; myNote += 1 }      // 9
+               else if (myNote % 12 == 10) { mySharp = true;  }     // @
+               else if  (myNote % 12 == 11) { mySharp = false;  }     // *
 
                 
                 console.log('myNoteConverted: ' + myNote)
+                console.log(' ')
               //  myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)

@@ -81,11 +81,11 @@
                 myOctaveDown = mySong[myLoop].split(',').length-1
 
 
-                myNote = (myNote * myOctaveUp * 12) - (myNote * myOctaveDown * 12)
+                myNote = myNote + (  (myOctaveUp * 12) - (myOctaveDown * 12) )
                 console.log('myNoteRaw: ' + myNote)
                 mySharp = false;
 
-/*
+
                 
                // if (myNote % 12 == 0) { mySharp = false;  }              // 0
                 if (myNote % 12 == 1) { mySharp = true; myNote -= 1 }      // 1
@@ -99,7 +99,7 @@
                 if (myNote % 12 == 9) { mySharp = false; myNote += 1 }      // 9
                 if (myNote % 12 == 10) { mySharp = true;  }     // @
                 if (myNote % 12 == 11) { mySharp = false;  }     // *
-*/
+
                 
                 console.log('myNoteConverted: ' + myNote)
               //  myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown

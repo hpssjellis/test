@@ -25,6 +25,7 @@
     let myRadiusHoriz = 14
     let myDown = true
     let myRun = true
+    let mySharp = false
 
     async function moveDot() {
         // Clear the canvas
@@ -91,6 +92,7 @@
 
               // Draw the dot at the new position
                 if (myNormal){
+                    
                     mySelectNote = myTemp * myChangeNoteHoriz
                     ctx.beginPath();
                     ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
@@ -100,13 +102,14 @@
                 } else {
                        mySelectNote = myTemp * myChangeNoteVert
                       if (myDown){
+                          mySharp = true
                         ctx.beginPath();
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
                     //    console.log(myX2 + ', ' + myY2)
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
-                        ctx.fill();
+                        if(mySharp){ ctx.fill();}
                         ctx.closePath();
                       } else {
                         ctx.beginPath();

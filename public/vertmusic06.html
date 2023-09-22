@@ -25,6 +25,7 @@
     let myRadiusHoriz = 14
     let myDown = true
     let myRun = true
+    let mySharp = false
 
     async function moveDot() {
         // Clear the canvas
@@ -72,12 +73,32 @@
                     if (mySong[myLoop].includes('@')) {myNote = 10}
                     if (mySong[myLoop].includes('*')) {myNote = 11}
                 }    // parseInt did not work
+
+                 
                // console.log('myNote')
                // console.log(myNote)
                 myOctaveUp = mySong[myLoop].split('\'').length-1
                 myOctaveDown = mySong[myLoop].split(',').length-1
-    
-                myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+
+
+                myNote = (myNote * myOctaveUp * 12) - (myNote * myOctaveDown * 12)
+                console.log'(myNoteRaw: ' + myNote)
+                mySharp = false;
+               // if (myNote % 12 == 0) { mySharp = false;  }              // 0
+                if (myNote % 12 == 1) { mySharp = true; myNote -= 1 }      // 1
+                                                                           // 2
+                if (myNote % 12 == 3) { mySharp = true; myNote -= 1 }      // 3
+                                                                           // 4
+                if (myNote % 12 == 5) { mySharp = false; myNote += 1 }     // 5
+                if (myNote % 12 == 6) { mySharp = true;  }      // 6
+                if (myNote % 12 == 7) { mySharp = false; myNote += 1 }      // 7
+                if (myNote % 12 == 8) { mySharp = true; }      // 8
+                if (myNote % 12 == 9) { mySharp = false; myNote += 1 }      // 9
+                if (myNote % 12 == 10) { mySharp = true;  }     // @
+                if (myNote % 12 == 11) { mySharp = false;  }     // *
+                
+                console.log'(myNoteConverted: ' + myNote)
+              //  myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)
                 
@@ -95,7 +116,7 @@
                     ctx.beginPath();
                     ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
                     ctx.fillStyle = "black";
-                    ctx.fill();
+                    if (mySharp){ ctx.fill(); }
                     ctx.closePath();
                 } else {
                        mySelectNote = myTemp * myChangeNoteVert
@@ -106,13 +127,13 @@
                     //    console.log(myX2 + ', ' + myY2)
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
-                        ctx.fill();
+                       if (mySharp){ ctx.fill(); }
                         ctx.closePath();
                       } else {
                         ctx.beginPath();
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
-                        ctx.fill();
+                        if (mySharp){ ctx.fill(); }
                         ctx.closePath();
                                  
                     }

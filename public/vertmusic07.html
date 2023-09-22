@@ -95,7 +95,8 @@
                     
                     mySelectNote = myTemp * myChangeNoteHoriz
                     ctx.beginPath();
-                    ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
+                   // ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
+                    ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI * 2 0, Math.PI * 2);
                     ctx.fillStyle = "black";
                     if(mySharp){ ctx.fill();} else {ctx.stroke();}
                     ctx.closePath();

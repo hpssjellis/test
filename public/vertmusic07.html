@@ -112,10 +112,11 @@
                         if(mySharp){ ctx.fill();}
                         ctx.closePath();
                       } else {
+                        mySharp = false
                         ctx.beginPath();
                         ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
-                        ctx.fill();
+                        if(mySharp){ ctx.fill();}
                         ctx.closePath();
                                  
                     }

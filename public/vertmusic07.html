@@ -82,9 +82,10 @@
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)
                 
-                let myTemp = mySong[myLoop].replace('_', '')
+             //   let myTemp = mySong[myLoop].replace('_', '')
     
-                let myLength = myTemp.length   // not yet dealt with
+               // let myLength = myTemp.length   // not yet dealt with
+                let myLength = mySong[myLoop].split('_'').length-1
                 
             //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
        

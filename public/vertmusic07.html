@@ -100,7 +100,7 @@
 
               // Draw the dot at the new position
                 if (myNormal){
-                   dotX += myLength  
+                   dotX -= myLength  // more left for long notes
                    // mySelectNote = myTemp * myChangeNoteHoriz
                     mySelectNote = myNote * myChangeNoteHoriz
                     ctx.beginPath();

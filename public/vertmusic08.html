@@ -142,10 +142,36 @@
         }
 
 
+let timeoutId; // Store the timeout ID
+
+// Function to move the dot
+
+    if (timeoutId) {
+        clearTimeout(timeoutId); // Clear the previous setTimeout if it exists
+    }
+    
+    if (myNormal) {
+        dotX -= 3; // normal
+    } else {
+        if (myDown) {
+            dotX += 4; // vertical go down
+        } else {
+            dotX -= 2; // vertical go up
+        }
+    }
+
+    // Repeat the animation
+    if (myRun) {
+        timeoutId = setTimeout(moveDot, 100); // Set a new timeout for the next animation frame
+    }
+}
+
+// Initial call to start the animation
+//moveDot();
 
 
             
-        
+        /*
    
         // Move the dot to the left using async/await
         await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
@@ -165,6 +191,8 @@
         if (myRun) {
             requestAnimationFrame(moveDot);
         }
+
+        */
     }
 </script>
 

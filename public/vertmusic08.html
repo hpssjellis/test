@@ -13,9 +13,9 @@
     let ctx = myCanvas.getContext("2d");
     let dotX
     let myY
-    let myChangeX = 10
+    let myNoteSpacing = 3; 
     let myChangeNoteVert = 90 // 150   //100  //47    // space between notes
-    let myChangeNoteHoriz = 16 //17 //18 // 45// 15    // space between notes
+    let myChangeNoteHoriz = 20 // 16 //17 //18 // 45// 15    // space between notes
     let mySelectNote = 30    // x or y of actual note
 
     let myOctaveChange = 3    // x or y of actual note
@@ -83,18 +83,20 @@
                 myOctaveDown = mySong[myLoop].split(',').length-1
 
                // console.log('myLoop: ' + myLoop + ', myNote: ' + myNote)
-               // myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+               //  =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
                 myNote += (myOctaveUp * 12) - (myOctaveDown * 12)
+
+                
              //   console.log('myNote2: ' + myNote)
-              //  console.log('myOctaveChange')
-              //  console.log(myOctaveChange)
+              //  console.log('')
+              //  console.log()
                 
               //  let myTemp = mySong[myLoop].replace('_', '')
     
                // let myLength = myTemp.length   // not yet dealt with
                 let myLength = mySong[myLoop].split('_').length
                 
-            //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+            //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' +  + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
        
 
 
@@ -104,7 +106,7 @@
                    // mySelectNote = myTemp * myChangeNoteHoriz
                     mySelectNote = myNote * myChangeNoteHoriz
                     ctx.beginPath();
-                  //  ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
+                  //  ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+, myRadiusHoriz,  0, Math.PI * 2);
                      ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI /2, 0, Math.PI * 2);
                     
                     // ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);

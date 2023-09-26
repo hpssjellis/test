@@ -18,7 +18,7 @@
     let myChangeNoteHoriz = 45// 15    // space between notes
     let mySelectNote = 30    // x or y of actual note
 
-    let myOctaveChange = 10    // x or y of actual note
+    let myOctaveChange = 3    // x or y of actual note
     let mySong;
     let myNormal = true
     let myRadiusVert = 45
@@ -83,9 +83,10 @@
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)
                 
-                let myTemp = mySong[myLoop].replace('_', '')
+              //  let myTemp = mySong[myLoop].replace('_', '')
     
-                let myLength = myTemp.length   // not yet dealt with
+               // let myLength = myTemp.length   // not yet dealt with
+                let myLength = mySong[myLoop].split('_').length-1
                 
             //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' + myOctaveChange + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
        
@@ -105,10 +106,10 @@
                     if(mySharp){ ctx.fill();} else {ctx.stroke();}
                     ctx.closePath();
                 } else {
-                       mySelectNote = myTemp * myChangeNoteVert
+                       mySelectNote = myNote * myChangeNoteVert
                       if (myDown){
                           mySharp = true
-                        ctx.beginPath();
+                         ctx.beginPath();
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
                     //    console.log(myX2 + ', ' + myY2)

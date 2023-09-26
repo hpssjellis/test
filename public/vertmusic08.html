@@ -127,7 +127,7 @@
                     //    console.log(myX2 + ', ' + myY2)
                       //  ctx.arc(myY+mySelectNote, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                           
-                        ctx.ellipse(myY-mySelectNote, dotX+(myChangeNoteHorizB*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI, 0, Math.PI * 2);
+                        ctx.ellipse(myY+mySelectNote, dotX-(myChangeNoteHorizB*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI, 0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();

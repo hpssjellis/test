@@ -15,14 +15,14 @@
     let myY
     let myChangeX = 10
     let myChangeNoteVert = 150   //100  //47    // space between notes
-    let myChangeNoteHoriz = 20 // 45// 15    // space between notes
+    let myChangeNoteHoriz = 18 // 45// 15    // space between notes
     let mySelectNote = 30    // x or y of actual note
 
     let myOctaveChange = 3    // x or y of actual note
     let mySong;
     let myNormal = true
     let myRadiusVert =20  // 30  // 45
-    let myRadiusHoriz = 14
+    let myRadiusHoriz = 12
     let myDown = true
     let myRun = true
     let mySharp = false
@@ -183,12 +183,12 @@ let animationId; // Store the animation ID
         // Move the dot to the left using async/await
         await new Promise((resolve) => setTimeout(resolve, 100)); // Simulated delay
         if (myNormal){
-          dotX -= 3;   // normal
+          dotX -= 1 //3;   // normal
         } else {
             if (myDown){
-               dotX += 4;      //vertical go down
+               dotX += 1 // 4;      //vertical go down
             } else {
-               dotX -= 2;     // veritcal go up
+               dotX -= 1  //2;     // veritcal go up
             }
                   
         }

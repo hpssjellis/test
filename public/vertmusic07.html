@@ -78,7 +78,8 @@
                 myOctaveUp = mySong[myLoop].split('\'').length-1
                 myOctaveDown = mySong[myLoop].split(',').length-1
     
-                myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+               // myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+                myNote += myOctaveUp * 12 + myOctaveDown * 12
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)
                 
@@ -93,10 +94,11 @@
               // Draw the dot at the new position
                 if (myNormal){
                     
-                    mySelectNote = myTemp * myChangeNoteHoriz
+                   // mySelectNote = myTemp * myChangeNoteHoriz
+                    mySelectNote = myNote * myChangeNoteHoriz
                     ctx.beginPath();
                   //  ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz,  0, Math.PI * 2);
-                     ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+myOctaveChange, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI /2, 0, Math.PI * 2);
+                     ctx.ellipse(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI /2, 0, Math.PI * 2);
                     
                     // ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
                     ctx.fillStyle = "black";
@@ -110,14 +112,14 @@
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
                     //    console.log(myX2 + ', ' + myY2)
-                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();
                       } else {
                         mySharp = false
                         ctx.beginPath();
-                        ctx.arc(myY+mySelectNote+myOctaveChange, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                        ctx.arc(myY+mySelectNote, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();

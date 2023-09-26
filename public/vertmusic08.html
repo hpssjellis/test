@@ -29,6 +29,7 @@
     let myDown = true
     let myRun = true
     let mySharp = false
+    let myTimer
 
     async function moveDot() {
         // Clear the canvas
@@ -186,7 +187,16 @@ let animationId; // Store the animation ID
         
    
         // Move the dot to the left using async/await
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Simulated delay
+     //   await new Promise((resolve) => setTimeout(resolve, 500)); // Simulated delay
+
+
+    clearTimeout(myTimer)
+
+     
+    myTimer = setTimeout(myDoIt, 500);
+        
+function myDoIt(){
+      
         if (myNormal){
           dotX -= 3;   // normal
         } else {
@@ -206,6 +216,7 @@ let animationId; // Store the animation ID
 
         
     }
+}       
 </script>
 
 <h6>Version 0.1.1-12</h6></h6>

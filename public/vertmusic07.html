@@ -77,9 +77,11 @@
                // console.log(myNote)
                 myOctaveUp = mySong[myLoop].split('\'').length-1
                 myOctaveDown = mySong[myLoop].split(',').length-1
-    
+
+                console.log('myNote: ' + myNote)
                // myOctaveChange =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
                 myNote += myOctaveUp * 12 + myOctaveDown * 12
+                console.log('myNote2: ' + myNote)
               //  console.log('myOctaveChange')
               //  console.log(myOctaveChange)
                 

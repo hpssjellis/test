@@ -113,14 +113,18 @@
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
                     //    console.log(myX2 + ', ' + myY2)
-                        ctx.arc(myY+mySelectNote, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                      //  ctx.arc(myY+mySelectNote, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                          
+                        ctx.ellipse(myY-mySelectNote, dotX+(myChangeNoteHoriz*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI /2, 0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();
                       } else {
                         mySharp = false
                         ctx.beginPath();
-                        ctx.arc(myY+mySelectNote, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                      //  ctx.arc(myY+mySelectNote, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                          
+                        ctx.ellipse(myY-mySelectNote, dotX+(myChangeNoteHoriz*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI /2, 0, Math.PI * 2);
                         ctx.fillStyle = "black";
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();

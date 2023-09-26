@@ -30,6 +30,7 @@
     let myRun = true
     let mySharp = false
     let myTimer
+    let mySpeed = 100
 
     async function moveDot() {
         // Clear the canvas
@@ -193,7 +194,7 @@ let animationId; // Store the animation ID
     clearTimeout(myTimer)
 
      
-    myTimer = setTimeout(myDoIt, 500);
+    myTimer = setTimeout(myDoIt, mySpeed);
         
 function myDoIt(){
       
@@ -277,5 +278,17 @@ function myDoIt(){
     }
 }">
 
+
+<input id="myStopButton" type="button" value="+" onclick="{
+mySpeed += 50;
+}">
+
+<input id="myStopButton" type="button" value="-" onclick="{
+mySpeed -= 50;
+}">  
+
+
+
+<br>    
 </body>
 </html>

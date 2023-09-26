@@ -73,6 +73,10 @@
                     if (mySong[myLoop].includes('@')) {myNote = 10}
                     if (mySong[myLoop].includes('*')) {myNote = 11}
                 }    // parseInt did not work
+
+               mySharp = false
+                if (myNote == 1 || myNote == 3 || myNote == 6 || myNote == 8 || myNote == 10 ) {mySharp = true}
+                
                // console.log('myNote')
                // console.log(myNote)
                 myOctaveUp = mySong[myLoop].split('\'').length-1
@@ -96,7 +100,7 @@
 
               // Draw the dot at the new position
                 if (myNormal){
-                    
+                   
                    // mySelectNote = myTemp * myChangeNoteHoriz
                     mySelectNote = myNote * myChangeNoteHoriz
                     ctx.beginPath();
@@ -110,7 +114,7 @@
                 } else {
                        mySelectNote = myNote * myChangeNoteVert
                       if (myDown){
-                          mySharp = true
+                          
                          ctx.beginPath();
                     //    myX2 = myY+mySelectNote+myOctaveChange
                      //   myY2 = dotX-(myChangeNoteVert*myLoop)
@@ -122,7 +126,7 @@
                         if(mySharp){ ctx.fill();} else {ctx.stroke();}
                         ctx.closePath();
                       } else {
-                        mySharp = false
+                        
                         ctx.beginPath();
                       //  ctx.arc(myY+mySelectNote, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
                           

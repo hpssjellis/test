@@ -100,7 +100,7 @@
 
               // Draw the dot at the new position
                 if (myNormal){
-                   dotx += myLength
+                   myY += myLength
                    // mySelectNote = myTemp * myChangeNoteHoriz
                     mySelectNote = myNote * myChangeNoteHoriz
                     ctx.beginPath();
@@ -113,7 +113,7 @@
                     ctx.closePath();
                 } else {
                        mySelectNote = myNote * myChangeNoteVert
-                       myY += myLength
+                       dotX += myLength
                       if (myDown){
                           
                          ctx.beginPath();

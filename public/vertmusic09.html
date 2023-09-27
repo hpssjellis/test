@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <img id="myImage01" src="mainsheet07.png" width="2000px"  height="600px  style="position:absolute; left:0; top:0;  ">
+
+    <canvas id="myCanvas" width="2000px"  height="600px "style="border:1px solid black;  position:absolute; left:0; top:0;"></canvas>
+
+<script>
+    // Define your variables with "my" prefix
+    let myCanvas = document.getElementById("myCanvas");
+    let ctx = myCanvas.getContext("2d");
+    let dotX
+    let myY
+    let myNoteSpacing = 3; 
+    let myChangeNoteVertA = 25 // 110 //90 // 150   //100  //47    // space between notes
+    let myChangeNoteHorizA = 16 //20 // 16 //17 //18 // 45// 15    // space between notes
+    
+    let myChangeNoteVertB = 54 //90 // 150   //100  //47    // space between notes
+    let myChangeNoteHorizB = 40 //20 // 16 //17 //18 // 45// 15    // space between notes
+    let mySelectNote = 30    // x or y of actual note
+
+    let myOctaveChange = 3    // x or y of actual note
+    let mySong;
+    let myNormal = true
+    let myRadiusVert = 20  // 30  // 45
+    let myRadiusHoriz = 11 // 12
+    let myDown = true
+    let myRun = true
+    let mySharp = false
+    let myTimer
+    let mySpeed = 400
+
+    async function moveDot() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+        /*
+        // Draw the horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, myCanvas.height / 2);
+        ctx.lineTo(myCanvas.width, myCanvas.height / 2);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+
+        */
+
+        // range ,,8 to '5  max notes
+
+        for (myLoop=0; myLoop < mySong.length; myLoop++){
+        //   mySelectNote = parseInt(mySong[0][0]) * 30
+            let myOctaveUp = 0    
+            let myOctaveDown = 0  
+            let myOctaveMove = 20
+
+            
+            let myIn = mySong[myLoop]
+            if (myIn != '') {
+             //   console.log('myIn')
+             //   console.log(myIn)
+                
+                myIn = myIn.replaceAll('\'','');
+                myIn =  myIn.replaceAll(',', '');
+    
+                
+    
+             //   console.log('myIn')
+              //  console.log(myIn)
+                
+                let myNote = parseInt(myIn)
+               // console.log('parseInt(myIn): ' + parseInt(myIn) )
+    
+                
+                if (  isNaN(myNote) ){
+                    myNote = -1;                      // just so it is a number
+                    if (mySong[myLoop].includes('@')) {myNote = 10}
+                    if (mySong[myLoop].includes('*')) {myNote = 11}
+                }    // parseInt did not work
+
+               mySharp = false
+                if (myNote == 1 || myNote == 3 || myNote == 6 || myNote == 8 || myNote == 10 ) {mySharp = true}
+                
+               // console.log('myNote')
+               // console.log(myNote)
+                myOctaveUp = mySong[myLoop].split('\'').length-1
+                myOctaveDown = mySong[myLoop].split(',').length-1
+
+               // console.log('myLoop: ' + myLoop + ', myNote: ' + myNote)
+               //  =   myOctaveMove *  myOctaveUp +   myOctaveMove *  myOctaveDown
+                myNote += (myOctaveUp * 12) - (myOctaveDown * 12)
+
+                
+             //   console.log('myNote2: ' + myNote)
+              //  console.log('')
+              //  console.log()
+                
+              //  let myTemp = mySong[myLoop].replace('_', '')
+    
+               // let myLength = myTemp.length   // not yet dealt with
+                let myLength = mySong[myLoop].split('_').length
+                
+            //    console.log('#' + myLoop + ',  mySong: ' + mySong[myLoop] + ', myNote: ' + myNote+ ', myTemp: ' + myTemp + ', myLenth: ' + myLength + ', myOC: ' +  + ', up: ' + myOctaveUp+', down: '+myOctaveDown)
+       
+
+
+              // Draw the dot at the new position
+                if (myNormal){
+                   dotX -= myLength  // more left for long notes
+                   // mySelectNote = myTemp * myChangeNoteHoriz
+                    mySelectNote = myNote * myChangeNoteHorizA
+                    ctx.beginPath();
+                  //  ctx.arc(dotX+(myChangeNoteHoriz*myLoop), myY-mySelectNote+, myRadiusHoriz,  0, Math.PI * 2);
+                     ctx.ellipse(dotX+(myChangeNoteVertA*myLoop), myY-mySelectNote, myRadiusHoriz, myRadiusHoriz*myLength, Math.PI /2, 0, Math.PI * 2);
+                    
+                    // ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
+                    ctx.fillStyle = "black";
+                    if(mySharp){ ctx.fill();} else {ctx.stroke();}
+                    ctx.closePath();
+                } else {
+                       mySelectNote = myNote * myChangeNoteVertB
+                      
+                      if (myDown){
+                        dotX += myLength    
+                         ctx.beginPath();
+                    //    myX2 = myY+mySelectNote+myOctaveChange
+                     //   myY2 = dotX-(myChangeNoteVert*myLoop)
+                    //    console.log(myX2 + ', ' + myY2)
+                      //  ctx.arc(myY+mySelectNote, dotX-(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                          
+                        ctx.ellipse(myY+mySelectNote, dotX-(myChangeNoteHorizB*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI, 0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        if(mySharp){ ctx.fill();} else {ctx.stroke();}
+                        ctx.closePath();
+                      } else {
+                        dotX -= myLength  
+                        ctx.beginPath();
+                      //  ctx.arc(myY+mySelectNote, dotX+(myChangeNoteVert*myLoop), myRadiusVert,  0, Math.PI * 2);
+                          
+                        ctx.ellipse(myY+mySelectNote, dotX+(myChangeNoteHorizB*myLoop),  myRadiusVert, myRadiusVert*myLength, Math.PI, 0, Math.PI * 2);
+                        ctx.fillStyle = "black";
+                        if(mySharp){ ctx.fill();} else {ctx.stroke();}
+                        ctx.closePath();
+                                 
+                    }
+                }  
+            }
+        }
+
+
+    clearTimeout(myTimer)
+
+     
+    myTimer = setTimeout(myDoIt, mySpeed);
+        
+function myDoIt(){
+      
+        if (myNormal){
+          dotX -= 3;   // normal
+        } else {
+            if (myDown){
+               dotX +=  4;      //vertical go down
+            } else {
+               dotX -= 2;     // veritcal go up
+            }
+                  
+        }
+
+
+        // Repeat the animation
+        if (myRun) {
+            requestAnimationFrame(moveDot);
+        }
+
+        
+    }
+}       
+</script>
+
+
+
+<input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
+    dotX = 100 //300   //0    // start location
+    myY = 1000 //300 // 980   //1030     // line up the notes
+    myRun = true
+    myNormal = false;
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07flipped.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal" onclick="{    
+    dotX =   700   // 905;   // line up the notes
+    myY = 300    // start location
+    myRun = true
+    myNormal = true;   
+    myDown = true
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="play Normal-Vertical" onclick="{
+    dotX = 300;   // start location
+    myY = 1030   // line up the notes
+    myRun = true
+    myNormal = false;
+    myDown = false
+    document.getElementById('myStopButton').value = 'Stop'
+    document.getElementById('myImage01').src='mainsheet07rotated.png'
+    mySong = document.getElementById('myArea01').value.split(' ')
+    moveDot()
+}">
+<input type="button" value="Show" onclick="{
+    mySong = document.getElementById('myArea01').value.split(' ')
+    alert(mySong)
+}">
+<input id="myStopButton" type="button" value="Stop" onclick="{
+    if(myRun){
+       myRun = false
+        document.getElementById('myStopButton').value = 'Go'
+
+    } else {
+       myRun = true   
+        document.getElementById('myStopButton').value = 'Stop'
+        requestAnimationFrame(moveDot);
+    }
+}">
+
+
+<input id="myStopButton" type="button" value="+" onclick="{
+  mySpeed -= 20;
+    if (mySpeed <= 4) {mySpeed = 4}
+  document.getElementById('myShowSpeed').value = mySpeed
+}">
+
+<input id="myStopButton" type="button" value="-" onclick="{
+  mySpeed +=20;
+  document.getElementById('myShowSpeed').value = mySpeed
+}">  
+
+<input id="myShowSpeed" type="text" value="" >  
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+<h6>Version 0.1.1-12</h6></h6>
+<h2 align=center>Music Player from <a href="https://.com/default.php">.com</a></h2>
+
+<textarea id="myArea01" rows=6 cols=70 NOWRAP>
+0 0_ '0 ,0 0__ 2 4_ 5 7___ 9  0 1 2 3 4 5 6 7 8 9 10 11 12 0 0 0 [279] 0 [059] 0
+</textarea><br>
+
+
+
+
+    
+
+
+
+<!--
+
+<div ><textarea id='myArea01' rows=5 cols='120'> '2_ '2_ '2_ '2_ '1_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ * 7_ 9_ 7_ 9_ 7_ 6_ 4_ 2_---- 9_ 6_ 9_ '2__ '1__ '4_ '2___ '2_____ 9____---- '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___------ '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___-</textarea> </div>
+
+-->
+
+
+All printouts are for personal music education or music research only
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<script>
+
+function myPlay(volume) {
+   
+
+    
+   frequency =  document.myNotes[1][document.myCounter2]
+   mydura = document.myNotes[2][document.myCounter2]
+    
+  var context = new AudioContext;
+  var gainNode = context.createGain();
+  
+  oscillator = context.createOscillator();
+  oscillator.connect(gainNode);
+  oscillator.type = 'sine'; //sine square sawtooth triangle custom
+  
+  gainNode.connect(context.destination);
+  gainNode.gain.value = volume; //volume 1 = max
+  gainNode.connect(context.destination);
+        
+  gainNode.gain.setValueAtTime(0, context.currentTime);
+  gainNode.gain.linearRampToValueAtTime(1, context.currentTime + 30 / 1000); //attack
+  gainNode.gain.linearRampToValueAtTime(0, context.currentTime + (mydura-30) / 1000); //decay
+
+  oscillator.frequency.value = frequency;
+  document.all.myArea04.value = context.currentTime + ' freq '+frequency+ ', '+mydura +
+  '\n'+document.all.myArea04.value
+  oscillator.start(0);
+
+    setTimeout(function() {
+        oscillator.stop(0);
+        oscillator.disconnect(gainNode);
+        gainNode.disconnect(context.destination);
+        context.close();
+    }, mydura)
+  
+    document.myCounter2 +=1
+    if(document.myCounter2 <= document.myNotes[1].length-1){
+        if (document.myKeepGoing){
+            setTimeout('myPlay(1.0)', mydura)
+        }
+    }
+
+}
+
+
+   
+ 
+   
+   
+ 
+   
+   
+   
+   
+
+    document.myKeepGoing = true;
+    document.myBaseDuration = 250;  // milliseconds for one note
+
+    document.myNotes = new Array(4)
+    document.myNotes[0] = new Array()   // note number
+    document.myNotes[1] = new Array()   // note frequency
+    document.myNotes[2] = new Array()   // note duration
+    document.myNotes[3] = new Array()   // note Octave
+    //document.myNotes[4] = new Array()   // actual duration
+    document.myCounter = -1;
+    document.myCounter2 = 0;
+    document.myCounter22 = 0;
+    document.myCounter23 = 0;
+    
+    
+</script>
+
+
+
+<br><input type=button value="Play" id="myGo" onclick="{
+
+
+
+document.all.myArea02.value = ''
+document.myCounter = -1;
+myIn = document.getElementById('myArea01')
+myOctave = 4
+myDuration = 1
+for (myCount=0; myCount<= myIn.value.length-1; myCount++){
+  if (myIn.value[myCount]== ','){myOctave -= 1; myDuration = 1}
+   else if (myIn.value[myCount]== '\''){myOctave += 1; myDuration = 1}
+      else if (myIn.value[myCount]== '_'){
+              myDuration += 1;
+              document.myNotes[2][document.myCounter] = myDuration
+           }
+           else if (myIn.value[myCount]== ' '){} // do nothing
+           else {
+             myDuration = 1
+             document.myCounter += 1;
+             document.myNotes[0][document.myCounter] = myIn.value[myCount]
+             document.myNotes[1][document.myCounter] = -1
+             document.myNotes[2][document.myCounter] = myDuration
+             document.myNotes[3][document.myCounter] = myOctave
+             //document.myNotes[4][document.myCounter] = document.myNotes[2][document.myCounter] * document.myBaseDuration 
+             myOctave = 4
+             myDuration = 1
+             
+           }
+     
+  
+  
+    
+  }  // end for
+  //alert(document.myNotes[0])
+  //alert(document.myNotes[1])
+  //alert(document.myNotes[2])
+  //alert(document.myNotes[3])
+  
+  //alert(document.myNotes[3].length)
+  document.all.myArea02.value = 'Count, Code, Freq, Duration, Octave \n'
+  for (myGo=0; myGo<= document.myNotes[1].length-1; myGo++ ){
+     document.all.myArea02.value += myGo + ' '+  document.myNotes[0][myGo] + ' ' +
+     document.myNotes[1][myGo] + ' ' +
+     document.myNotes[2][myGo] + ' ' +
+     document.myNotes[3][myGo] + ' ' + '\n'
+     //document.myNotes[4][myGo] + '\n'
+  }
+  
+  
+ 
+  for (myGo=0; myGo<= document.myNotes[1].length-1; myGo++ ){
+  
+   document.myNotes[2][myGo] = document.myNotes[2][myGo] * document.myBaseDuration  // set duration
+   
+   if (document.myNotes[0][myGo] == '-'){document.myNotes[1][myGo] = 0}   // set spaces
+   
+   
+   
+   if (document.myNotes[0][myGo] == '0'){document.myNotes[1][myGo] = 261.63}
+   if (document.myNotes[0][myGo] == '1'){document.myNotes[1][myGo] = 277.18}
+   if (document.myNotes[0][myGo] == '2'){document.myNotes[1][myGo] = 293.66}
+   if (document.myNotes[0][myGo] == '3'){document.myNotes[1][myGo] = 311.13}
+   if (document.myNotes[0][myGo] == '4'){document.myNotes[1][myGo] = 329.63}
+   if (document.myNotes[0][myGo] == '5'){document.myNotes[1][myGo] = 349.23}
+   if (document.myNotes[0][myGo] == '6'){document.myNotes[1][myGo] = 369.99}
+   if (document.myNotes[0][myGo] == '7'){document.myNotes[1][myGo] = 392.00}
+   if (document.myNotes[0][myGo] == '8'){document.myNotes[1][myGo] = 415.30}
+   if (document.myNotes[0][myGo] == '9'){document.myNotes[1][myGo] = 440.00}
+   if (document.myNotes[0][myGo] == '@'){document.myNotes[1][myGo] = 466.16}
+   if (document.myNotes[0][myGo] == '*'){document.myNotes[1][myGo] = 493.88}
+   
+  
+     if (document.myNotes[3][myGo] == 1){   // less than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] / 8
+     } 
+     
+     if (document.myNotes[3][myGo] == 2){   // less than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] / 4
+     }  
+     
+     if (document.myNotes[3][myGo] == 3){   // less than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] / 2
+     }  
+     
+     if (document.myNotes[3][myGo] == 5){   // greater than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] * 2
+     }  
+     
+     if (document.myNotes[3][myGo] == 6){   // greater  than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] * 4
+     }  
+     
+     if (document.myNotes[3][myGo] == 7){   // greater  than the middle octave
+       document.myNotes[1][myGo] = document.myNotes[1][myGo] * 8
+     }  
+                   
+
+ 
+ 
+ 
+ } //end for
+ 
+  
+  
+  document.all.myArea03.value = ''
+   for (myGo=0; myGo<= document.myNotes[1].length-1; myGo++ ){
+     document.all.myArea03.value += myGo + ' '+  
+     document.myNotes[0][myGo] + ' ' +
+     document.myNotes[1][myGo] + ' ' +
+     document.myNotes[2][myGo] + ' ' +
+     document.myNotes[3][myGo] + ' ' + '\n'
+    // document.myNotes[4][myGo] + '\n'
+  }
+  
+  
+  
+   document.getElementById('myDoIt').click()
+  
+  
+}">
+
+
+<input id="myDoIt" type=button value="Play Single Notes" style="display:none" onclick="{
+
+ document.myKeepGoing = true;
+ document.myCounter2 = 0;
+ //document.all.myGo.click()
+ 
+//alert(document.myNotes[1].length)
+
+
+  myPlay(1.0);  // volume  // recursive function
+
+}">
+
+
+<input type=button value="Stop" onclick="{
+
+   document.myKeepGoing = false;
+        
+        
+        
+
+}">
+
+<br>
+
+
+Key<input type=button value="+" onclick="{
+  for (myGo=0; myGo<= document.myNotes[1].length-1; myGo++ ){
+     document.myNotes[1][myGo] = document.myNotes[1][myGo] * 1.05946309436
+  }
+}">
+
+<input type=button value="-" onclick="{
+  for (myGo=0; myGo<= document.myNotes[1].length-1; myGo++ ){
+     document.myNotes[1][myGo] = document.myNotes[1][myGo] / 1.05946309436
+  }
+}">  Note duration <input type="range" style="width:50%" id="mySlider" min="40" max="1000" step="1" value="250"  onchange="{
+  document.myBaseDuration = this.value
+  document.all.mySpeed.value = this.value
+  document.all.myGo.click()
+}"><input type=text id="mySpeed" value=250 size=5 onchange="{
+   document.myBaseDuration = this.value
+     document.all.myGo.click()
+}"> milliseconds<br>
+
+
+    
+
+<img src="pinaoOld1.png" width="100%" /> <br>
+
+
+<div style="display:none">
+<textarea id="myArea02" rows=20 cols=50></textarea><br>
+<textarea id="myArea03" rows=20 cols=50></textarea>
+<textarea id="myArea04" rows=20 cols=50></textarea>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<br>    
+</body>
+</html>

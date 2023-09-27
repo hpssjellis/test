@@ -223,10 +223,11 @@ function myDoIt(){
 <h6>Version 0.1.1-12</h6></h6>
 <h2 align=center>Music Player from <a href="https://rocksetta.com/default.php">Rocksetta.com</a></h2>
 
+    <!--
 <textarea id="myArea01" rows=6 cols=70 NOWRAP>
 0 0_ '0 ,0 0__ 2 4_ 5 7___ 9  0 1 2 3 4 5 6 7 8 9 10 11 12 0 0 0
 </textarea><br>
-
+-->
 
 
 <input type="button" value="play Flip horizontal-rotate to vertical" onclick="{
@@ -280,13 +281,17 @@ function myDoIt(){
 
 
 <input id="myStopButton" type="button" value="+" onclick="{
-mySpeed -= 5;
+  mySpeed -= 20;
+    if (mySpeed <= 4) {mySpeed = 4}
+  document.getElementById('myShowSpeed').value = mySpeed
 }">
 
 <input id="myStopButton" type="button" value="-" onclick="{
-mySpeed += 5;
+  mySpeed +=20;
+  document.getElementById('myShowSpeed').value = mySpeed
 }">  
 
+<input id="myShowSpeed" type="text" value="" >  
 
 
 
@@ -294,15 +299,23 @@ mySpeed += 5;
 
 
 
-<h4 Align=Center><img width=100% src='keyboard1.jpg'><br><a href='http://www.rocksetta.com/support/keyfreemusic.html'>Rocksetta Music Numbers</a>: Across the Universe ROCKSETTA </h4>
- '2_ '2_ '2_ '2_ '1_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ * 7_ 9_ 7_ 9_ 7_ 6_ 4_ 2_---- 9_ 6_ 9_ '2__ '1__ '4_ '2___ '2_____ 9____---- '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___------ '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___-<br><br>
+
+
+
+
+
+
+
+
+    
+
+
+
+
 
 <div ><textarea id='myArea01' rows=5 cols='120'> '2_ '2_ '2_ '2_ '1_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ *_ 9_ * 7_ 9_ 7_ 9_ 7_ 6_ 4_ 2_---- 9_ 6_ 9_ '2__ '1__ '4_ '2___ '2_____ 9____---- '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___------ '4_ '4_ '4_ '4_ '2__ '4_ 7___------ '2_ '2_ '2_ '2_ '1__ '2_ 6___-</textarea> </div>
 
 
-
-<h4 Align=Center>Rocksetta Music Letters: Across the Universe ROCKSETTA</h4>
- 'D_ 'D_ 'D_ 'D_ 'C#_ B_ A_ B_ A_ B_ A_ B_ A_ B_ A_ B G_ A_ G_ A_ G_ F#_ E_ D_---- A_ F#_ A_ 'D__ 'C#__ 'E_ 'D___ 'D_____ A____---- 'E_ 'E_ 'E_ 'E_ 'D__ 'E_ G___------ 'D_ 'D_ 'D_ 'D_ 'C#__ 'D_ F#___------ 'E_ 'E_ 'E_ 'E_ 'D__ 'E_ G___------ 'D_ 'D_ 'D_ 'D_ 'C#__ 'D_ F#___-<hr>
 
 
 All printouts are for personal music education or music research only
@@ -406,11 +419,7 @@ function myPlay(volume) {
     
 </script>
 
-<input type=button value=sdf onclick="{
 
-
-   document.getElementById('myArea01').style.display = 'inline'
-}">
 
 <br><input type=button value="Play" id="myGo" onclick="{
 
@@ -583,7 +592,7 @@ Key<input type=button value="+" onclick="{
 
 
 
-<div style="display:none">
+<div style="display:inline">
 <textarea id="myArea02" rows=20 cols=50></textarea><br>
 <textarea id="myArea03" rows=20 cols=50></textarea>
 <textarea id="myArea04" rows=20 cols=50></textarea>
